@@ -3,88 +3,524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Edmonton Computer Repair - Fast, friendly tech support for PCs, laptops, and more!">
-    <title>Edmonton Computer Repair - Your Friendly Tech Team</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Open+Sans&display=swap">
+    <title>Edmonton Tech Solutions | Computer Repair & IT Services</title>
+    <style>
+        :root {
+            --primary-color: #2a52be;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffa500;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --dark-bg: #222831;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                       url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') 
+                       center/cover no-repeat;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e69500;
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 4rem 0;
+            scroll-margin-top: 70px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .about-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .contact-cta {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: right;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary-color);
+                transition: 0.3s;
+                padding: 2rem;
+                z-index: 1000;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+            
+            .service-card {
+                margin-bottom: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>Edmonton Computer Repair</h1>
-            <p>Your Friendly Neighborhood Tech Experts</p>
-            <a href="#contact" class="cta-button">Fix My Tech Now!</a>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-medical"></i> Edmonton<span>Tech</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                ☰
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <nav>
-        <div class="nav-toggle">
-            <i class="fas fa-bars"></i>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Edmonton's Friendly Computer Repair Experts</h1>
+            <p>We fix what frustrates you. Quick service, honest pricing, and no tech jargon – just solutions that work for your home or business.</p>
+            <a href="#contact" class="btn">Contact Us Now</a>
         </div>
-        <ul class="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    </section>
 
-    <div class="container">
-        <section id="home">
-            <h2>Welcome to Our Team</h2>
-            <p>We're your local Edmonton tech wizards, ready to solve all your computer woes with a smile!</p>
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="Friendly tech team working together">
-        </section>
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Us</h2>
+                <p>Local tech experts with a personal touch</p>
+            </div>
+            <div class="about-content">
+                <h3>We're Your Neighbors, Not Just Your IT Support</h3>
+                <p>Founded in 2015, Edmonton Tech grew from a small home-based operation to Edmonton's trusted computer repair service. We're proud locals who understand the unique tech challenges our community faces.</p>
+                <p>Our approach is simple: we listen to your problems, explain solutions in plain language, and fix things right the first time. No unnecessary upsells, no tech jargon – just honest service from people who genuinely care.</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="services">
-            <h2>What We Can Do For You</h2>
-            <div class="services">
-                <div class="service-box">
-                    <img src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e" alt="Technician repairing laptop">
-                    <h3>PC & Laptop Fixes</h3>
-                    <p>We’ll get your devices running like new</p>
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>From virus removal to server solutions, we've got you covered</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1633463047596-19f9f9a7dc9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Virus removal service">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Virus Removal</h3>
+                        <p>Computer running slow? Strange pop-ups? We'll clean out malware, viruses, and optimize your system to run like new again.</p>
+                    </div>
                 </div>
-                <div class="service-box">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d" alt="Person removing virus">
-                    <h3>Virus Busting</h3>
-                    <p>Say goodbye to pesky malware</p>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hardware repair service">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Hardware Repair</h3>
+                        <p>From broken screens to motherboard issues, we diagnose and fix hardware problems with care and precision.</p>
+                    </div>
                 </div>
-                <div class="service-box">
-                    <img src="https://images.unsplash.com/photo-1486312338219-9f1f5e088264" alt="Happy person with recovered data">
-                    <h3>Data Rescue</h3>
-                    <p>We’ll save your precious files</p>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed4de8c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Data recovery service">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Data Recovery</h3>
+                        <p>Lost important files? We can help recover data from crashed drives and accidentally formatted storage.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2>Meet Your Tech Friends</h2>
-            <p>We’re a team of Edmonton locals who love tech and love helping people. Over 10 years of making tech troubles disappear!</p>
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Smiling team collaborating">
-        </section>
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Real feedback from Edmonton locals</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"I was panicking when my laptop died right before a big project deadline. The team at Edmonton Tech had it back up and running the same day. No upselling, just honest service."</p>
+                <p class="testimonial-author">- Sarah M., Strathcona</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"My computer was running like it was from 1995. After their virus removal and tune-up, it's lightning fast. Fair price and they didn't make me feel dumb for clicking on that suspicious email."</p>
+                <p class="testimonial-author">- Jennifer K., Mill Woods</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
+    <section id="contact" class="contact-cta">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Questions? Need a quote? We're here to help!</p>
+            </div>
+            <a href="tel:7805551234" class="btn">Call Now: (780) 555-1234</a>
             <div class="contact-info">
-                <p><i class="fas fa-map-marker-alt"></i> 123 Tech Haven, Edmonton, AB T5J 2R4</p>
-                <p><i class="fas fa-phone"></i> (780) 555-1234</p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:fixme@edmontonrepair.com">fixme@edmontonrepair.com</a></p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 9 AM - 6 PM | Sat: 10 AM - 4 PM</p>
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p>123 Whyte Ave, Edmonton, AB T6E 2X7</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p>help@edmontontech.ca</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <p>Monday-Friday: 9am-7pm</p>
+                            <p>Saturday: 10am-5pm</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="mailto:fixme@edmontonrepair.com" class="cta-button">Send Us a Message</a>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <footer>
-        <p>© 2025 Edmonton Computer Repair | Your Tech BFFs in Edmonton</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-medical"></i> Edmonton<span>Tech</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <p class="copyright">© 2025 Edmonton Tech Solutions. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.getElementById('mainNav').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
